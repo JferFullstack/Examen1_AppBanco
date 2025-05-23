@@ -1,30 +1,26 @@
-import React, { useContext } from 'react';
-import { View, Text, Button, StyleSheet } from 'react-native';
-import { BancoContext } from '../Context/BancoContext';
+// screens/InicioScreen.tsx
 
-const Inicio = ({ navigation }) => {
-  const { saldo, depositar } = useContext(BancoContext);
+import React from 'react';
+import { View, StyleSheet, ScrollView } from 'react-native';
+import Saludo from '../Components/Inicio/Saludo';
+import Saldo from '../Components/Inicio/Saldo';
+import HistorialTransacciones from '../Components/Inicio/HistorialTransacciones';
 
+const InicioScreen = () => {
   return (
-    <View style={styles.container}>
-      <Text style={styles.saldo}>Saldo actual: L.{saldo}</Text>
-      <Button title="Depositar L.500" onPress={() => depositar(500)} />
-      <Button title="Ir a Transferencias" onPress={() => navigation.navigate('Transferencias')} />
-      <Button title="Ver Historial" onPress={() => navigation.navigate('Historico')} />
-    </View>
+    <ScrollView contentContainerStyle={styles.container}>
+      <Saludo />
+      <Saldo />
+      <HistorialTransacciones />
+    </ScrollView>
   );
 };
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-  saldo: {
-    fontSize: 24,
-    marginBottom: 20,
+    flexGrow: 1,
+    padding: 20,
   },
 });
 
-export default Inicio;
+export default InicioScreen;

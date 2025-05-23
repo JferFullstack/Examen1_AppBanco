@@ -2,7 +2,7 @@ import React, { useContext } from 'react';
 import { View, Text, FlatList, StyleSheet } from 'react-native';
 import { BancoContext } from '../../Context/BancoContext';
 
-const HistorialTransacciones = () => {
+const ListaHistorico = () => {
   const { historial } = useContext(BancoContext);
 
   return (
@@ -39,4 +39,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default HistorialTransacciones;
+export default ListaHistorico;

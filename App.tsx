@@ -1,24 +1,22 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
-import Navegacion from './src/Navigation/Navegacion';
-import { BancoProvider } from './src/Context/BancoContext';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import InicioScreen from './src/Screens/Inicio';
+import TransferenciaScreen from './src/Screens/Transferencias';
+import HistoricoScreen from './src/Screens/Historico';
 
-export default function App() {
+const Stack = createNativeStackNavigator();
+
+const App = () => {
   return (
-    <BancoProvider>
-      <NavigationContainer>
-        <Navegacion />
-      </NavigationContainer>
-    </BancoProvider>
+    <NavigationContainer>
+      <Stack.Navigator initialRouteName="Inicio">
+        <Stack.Screen name="Inicio" component={InicioScreen} />
+        <Stack.Screen name="Transferencia" component={TransferenciaScreen} />
+        <Stack.Screen name="Historico" component={HistoricoScreen} />
+      </Stack.Navigator>
+    </NavigationContainer>
   );
-}
+};
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
+export default App;
