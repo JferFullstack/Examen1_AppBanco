@@ -2,7 +2,8 @@ import React from 'react';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import Inicio from '../Screens/Inicio';
 import Transferencias from '../Screens/Transferencias';
-import Historico from '../Screens/Historico';
+//import Historico from '../Screens/Historico';
+
 
 const Stack = createNativeStackNavigator();
 

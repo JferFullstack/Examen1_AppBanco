@@ -1,5 +1,3 @@
-// src/Context/BancoContext.tsx
-
 import React, { createContext, useState, ReactNode } from 'react';
 
 type Transaccion = {
@@ -11,7 +9,7 @@ type Transaccion = {
 type BancoContextType = {
   saldo: number;
   transacciones: Transaccion[];
-  historial: Transaccion[];      // <-- agregado historial
+  historial: Transaccion[];    
   depositar: (monto: number) => void;
   transferir: (monto: number, descripcion: string) => boolean;
 };
@@ -23,9 +21,9 @@ type Props = {
 };
 
 export const BancoProvider = ({ children }: Props) => {
-  const [saldo, setSaldo] = useState<number>(10000); // saldo inicial
+  const [saldo, setSaldo] = useState<number>(10000); 
   const [transacciones, setTransacciones] = useState<Transaccion[]>([]);
-  const [historial, setHistorial] = useState<Transaccion[]>([]);  // <-- estado para historial
+  const [historial, setHistorial] = useState<Transaccion[]>([]);  
 
   const agregarTransaccion = (descripcion: string) => {
     const nuevaTransaccion: Transaccion = {
@@ -36,12 +34,12 @@ export const BancoProvider = ({ children }: Props) => {
 
     setTransacciones((prev) => {
       const actualizadas = [nuevaTransaccion, ...prev];
-      return actualizadas.slice(0, 20); // máximo 20 transacciones
+      return actualizadas.slice(0, 20); 
     });
 
     setHistorial((prev) => {
       const actualizadas = [nuevaTransaccion, ...prev];
-      return actualizadas.slice(0, 20); // máximo 20 transacciones
+      return actualizadas.slice(0, 20); 
     });
   };
 
@@ -63,7 +61,7 @@ export const BancoProvider = ({ children }: Props) => {
       value={{
         saldo,
         transacciones,
-        historial,   // <-- proveer historial en el contexto
+        historial,   
         depositar,
         transferir,
       }}
