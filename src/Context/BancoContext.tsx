@@ -11,6 +11,7 @@ type Transaccion = {
 type BancoContextType = {
   saldo: number;
   transacciones: Transaccion[];
+  historial: Transaccion[];      // <-- agregado historial
   depositar: (monto: number) => void;
   transferir: (monto: number, descripcion: string) => boolean;
 };
@@ -22,8 +23,9 @@ type Props = {
 };
 
 export const BancoProvider = ({ children }: Props) => {
-  const [saldo, setSaldo] = useState<number>(10000); // Saldo inicial en L.10,000
+  const [saldo, setSaldo] = useState<number>(10000); // saldo inicial
   const [transacciones, setTransacciones] = useState<Transaccion[]>([]);
+  const [historial, setHistorial] = useState<Transaccion[]>([]);  // <-- estado para historial
 
   const agregarTransaccion = (descripcion: string) => {
     const nuevaTransaccion: Transaccion = {
@@ -34,7 +36,12 @@ export const BancoProvider = ({ children }: Props) => {
 
     setTransacciones((prev) => {
       const actualizadas = [nuevaTransaccion, ...prev];
-      return actualizadas.slice(0, 20); // Guardar máximo 20
+      return actualizadas.slice(0, 20); // máximo 20 transacciones
+    });
+
+    setHistorial((prev) => {
+      const actualizadas = [nuevaTransaccion, ...prev];
+      return actualizadas.slice(0, 20); // máximo 20 transacciones
     });
   };
 
@@ -56,6 +63,7 @@ export const BancoProvider = ({ children }: Props) => {
       value={{
         saldo,
         transacciones,
+        historial,   // <-- proveer historial en el contexto
         depositar,
         transferir,
       }}
